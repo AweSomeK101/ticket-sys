@@ -1,0 +1,168 @@
+/* ------------------------------------------ */
+/* ~~~~~~~~~~~~~~~~~~~LOGIN~~~~~~~~~~~~~~~~~~ */
+/* ------------------------------------------ */
+.login{
+  border: black 1px solid;
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.login h3 {
+  text-align: center;
+}
+
+
+/* -------------------------------------------- */
+/* ~~~~~~~~~~~~~~~~~DASHBOARD~~~~~~~~~~~~~~~~~~ */
+/* -------------------------------------------- */
+.header{
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.logoutBtn{
+  font-size: 0.8em;
+  padding: 1rem 1.5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: crimson;
+  color: white;
+  border-radius: 15px;
+}
+.logoutBtn:hover{
+  background-color: red;
+}
+
+
+/* ----------------------------------------- */
+/* ~~~~~~~~~~~~~~~~~Customer~~~~~~~~~~~~~~~~ */
+/* ----------------------------------------- */
+.customer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.customer .queryBtnContainer{
+  display: flex;
+  align-items: center;
+  border: blueviolet 3px solid;
+  font-size: 1.5em;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+.customer .queryBtnContainer:hover{
+  background-color: rgba(137, 43, 226, 0.1);
+  cursor: pointer;
+}
+
+.customer .queryBtnContainer > svg{
+  height: 50px;
+  margin-right: 20px;
+}
+
+
+/* --------------------------------------- */
+/* ~~~~~~~~~~~~~Support Item~~~~~~~~~~~~~~ */
+/* --------------------------------------- */
+
+.customerReqContainer{
+  max-width: 800px;
+  margin-top: 5rem;
+}
+
+.customerReqContainer > h3{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.customerReqContainer .supportItem{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.58);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.58);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.58);
+}
+
+.supportItem .top{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.supportItem .top > .right{
+  text-align: right;
+}
+
+.supportItem .title{
+  font-size: 0.8rem;
+  text-decoration: underline;
+}
+
+/* ---------------------------------------- */
+/* ~~~~~~~~~~New Support Request~~~~~~~~~~~ */
+/* ---------------------------------------- */
+.backBtn{
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 5px 5px 5px 0;
+  cursor: pointer;
+}
+
+.backBtn > svg{
+  height: 1.5rem;
+  margin-right: 5px;
+}
+
+.newRequest .FormBtn{
+  margin-top: 2rem;
+}
+
+
+/* ---------------------------------------- */
+/* ~~~~~~~~~~~~~~~Employee~~~~~~~~~~~~~~~~~~ */
+/* ------------------------------------------ */
+.employee .employeeNav{
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5rem;
+}
+
+.employee .employeeNav p{
+  cursor: pointer;
+}
+
+.employee .ticketTable{
+  margin-top: 5rem;
+}
+
+.ticketTable .detailBtn{
+  color: blueviolet;
+}
+
+/* ------------------------------------------ */
+/* ~~~~~~~~~~~~~~~Ticket Detail~~~~~~~~~~~~~~ */
+/* ------------------------------------------ */
+.ticket > div > p:first-child{
+  font-size: 0.8rem;
+  /* color: blueviolet; */
+  text-decoration: underline;
+  margin-bottom: 2px;
+}
+
+.ticket > div{
+  margin-bottom: 10px;
+}
