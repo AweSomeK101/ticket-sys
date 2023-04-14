@@ -1,9 +1,11 @@
 const multer = require("multer");
+const fs = require("fs");
 const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const uploadPath = path.join("public/policy");
+    fs.mkdirSync(uploadPath, { recursive: true });
     cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
