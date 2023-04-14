@@ -11,11 +11,13 @@ import DashboardLayout from "./pages/DashboardLayout";
 import CustomerLayout from "./pages/CustomerLayout";
 import NewRequestLayout from "./pages/NewRequestLayout";
 import EmployeeLayout from "./pages/EmployeeLayout";
-import TicketDetailLayout from "./pages/TicketDetailLayout";
+import TicketDetailLayout, { ticketLoader } from "./pages/TicketDetailLayout";
 import useUser from "./context/userProvider";
+import useTicket from "./context/useTicket";
 
 function App() {
   const { login } = useUser();
+  const { getTicket } = useTicket();
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />} action={loginAction(login)}>
@@ -24,7 +26,11 @@ function App() {
           <Route path="u" element={<CustomerLayout />} />
           <Route path="u/new_request" element={<NewRequestLayout />} />
           <Route path="e" element={<EmployeeLayout />} />
-          <Route path="e/ticket" element={<TicketDetailLayout />} />
+          <Route
+            path="e/ticket/:id"
+            element={<TicketDetailLayout />}
+            loader={ticketLoader(getTicket)}
+          />
         </Route>
       </Route>
     )

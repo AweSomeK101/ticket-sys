@@ -2,9 +2,9 @@ POST http://localhost:5000/api/user/register
 content-type: application/json
 
 {
-    "username": "employee2",
-    "password": "employee2",
-    "role": "employee"
+    "username": "customer",
+    "password": "customer",
+    "role": "user"
 }
 
 
@@ -16,10 +16,24 @@ POST http://localhost:5000/api/user/login
 content-type: application/json
 
 {
-    "username": "employee2",
-    "password": "employee2",
+    "username": "employee1",
+    "password": "employee1",
     "role": "employee"
 }
 
 ###
 POST http://localhost:5000/api/user/logout
+
+###
+GET http://localhost:5000/api/ticket
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM4NTAyNWQyZmU2ODY1ZThmNGU2ZTIiLCJpYXQiOjE2ODE0MjQ5MDN9.6c2nKTqe7-hu-Th6gXecNfwDKnAi-97rEjAC6lgHRgc
+
+
+###
+PATCH http://localhost:5000/api/ticket/6438bd11a79fd99d0f54f973
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM4NTAyNWQyZmU2ODY1ZThmNGU2ZTIiLCJpYXQiOjE2ODE0MjQ5MDN9.6c2nKTqe7-hu-Th6gXecNfwDKnAi-97rEjAC6lgHRgc
+Content-Type: application/json
+
+{
+    "assigned": "employee2"
+}

@@ -1,12 +1,12 @@
 const Ticket = require("../model/TicketModel.js");
 
 const getUnassignedTickets = async function () {
-  const tickets = await Ticket.find({ assigned: null });
+  const tickets = await Ticket.find({ assigned: { $exists: true, $eq: "" } });
   return tickets;
 };
 
 const getAssignedTickets = async function () {
-  const tickets = await Ticket.find({ assigned: { $exists: true, $ne: null } });
+  const tickets = await Ticket.find({ assigned: { $exists: true, $ne: "" } });
   return tickets;
 };
 
@@ -26,15 +26,16 @@ const ticketController = {
     try {
       const ticket = await Ticket.findById(req.params.ticketId);
       const { status, assigned } = req.body;
+      console.log(ticket, req.body);
       if (status) {
-        if (user.username != req.ticket.assigned) {
+        if (req.userData.username != ticket.assigned) {
           res.status(403);
           next(new Error("Ticket not assigned to user"));
         }
         ticket.status = status;
       }
       if (assigned) {
-        if (user.admin != true) {
+        if (req.userData.admin != true) {
           res.status(403);
           next(new Error("Not an admin"));
         }
@@ -52,7 +53,8 @@ const ticketController = {
     try {
       const { product, issue, description } = req.body;
       const policy = req.file;
-      if (!product || !issue || !description || !policy) {
+      console.log(policy);
+      if (!product || !issue || !policy) {
         res.status(400);
         next(new Error("Incomplete data"));
       }
@@ -60,20 +62,26 @@ const ticketController = {
         product,
         issue,
         description,
-        customer: user.username,
-        policy: policy.path,
+        customer: req.userData.username,
+        policy: policy.filename,
       });
 
       await ticket.save();
+      console.log(ticket);
       res.status(201).send(ticket);
-    } catch (error) {}
+    } catch (error) {
+      console.log("create ticket =>", error);
+      next(error);
+    }
   },
 
   getTickets: async function (req, res, next) {
     try {
       let tickets;
       if (req.userData.role == "employee") {
-        tickets = await Ticket.find({ assigned: req.userData.username });
+        tickets = {};
+        let assigned = await Ticket.find({ assigned: req.userData.username });
+        tickets.assignedTickets = assigned;
       } else {
         tickets = await Ticket.find({ customer: req.userData.username });
       }

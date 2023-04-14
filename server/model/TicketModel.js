@@ -22,6 +22,7 @@ const ticketSchema = new mongoose.Schema(
     assigned: {
       type: String,
       ref: "Users",
+      default: "",
     },
     policy: {
       type: String,

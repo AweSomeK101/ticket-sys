@@ -3,9 +3,12 @@ const User = require("../model/UserModel.js");
 
 const auth = async (req, res, next) => {
   try {
+    if (!req.header("Authorization")) {
+      res.status(400);
+      next(new Error("missing auth header"));
+    }
     const token = req.header("Authorization").replace("Bearer ", "");
     const decoded = jwt.verify(token, process.env.SALT);
-    console.log("decoded: ", decoded);
     const user = await User.findOne({ _id: decoded._id, "tokens.token": token });
     if (!user) {
       res.status(401);

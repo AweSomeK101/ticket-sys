@@ -1,12 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useTicket from "../context/useTicket";
 
 function TicketTable({ taskView }) {
+  const { employeeTickets } = useTicket();
+  const tickets =
+    taskView === 0 ? employeeTickets.unAssignedTickets : employeeTickets.assignedTickets;
+
   return (
     <table className="ticketTable">
       <thead>
         <tr>
-          {taskView == 0 ? <th>Customer username</th> : <th>Employee username</th>}
+          {taskView === 0 ? <th>Customer username</th> : <th>Employee username</th>}
 
           <th>Product type</th>
           <th>Issue type</th>
@@ -15,15 +20,17 @@ function TicketTable({ taskView }) {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>username1</td>
-          <td>Mobile Phone</td>
-          <td>Phone not charging</td>
-          <td>2023-04-11</td>
-          <td className="detailBtn">
-            <Link to="ticket">More Detail</Link>
-          </td>
-        </tr>
+        {tickets.map((ticket) => (
+          <tr key={ticket._id}>
+            <td>{taskView === 0 ? ticket.customer : ticket.assigned}</td>
+            <td>{ticket.product}</td>
+            <td>{ticket.issue}</td>
+            <td>{ticket.createdAt}</td>
+            <td className="detailBtn">
+              <Link to={`ticket/${ticket._id}`}>More Detail</Link>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

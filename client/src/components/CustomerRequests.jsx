@@ -1,11 +1,14 @@
 import React from "react";
 import SupportItem from "./SupportItem";
 
-function CustomerRequests() {
+function CustomerRequests({ tickets }) {
+  console.log(tickets);
   return (
     <div className="customerReqContainer">
       <h3>Your Support Requests</h3>
-      <SupportItem />
+      {tickets.map((ticket) => (
+        <SupportItem {...ticket} key={ticket._id} />
+      ))}
     </div>
   );
 }

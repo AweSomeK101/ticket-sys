@@ -1,25 +1,31 @@
 import React from "react";
 
-function SupportItem() {
+function SupportItem({ product, issue, description, createdAt, status }) {
   return (
     <div className="supportItem">
       <div className="top">
         <div className="left">
           <p className="title">Product Type</p>
-          <p>Whashing Machine</p>
+          <p>{product}</p>
         </div>
         <div className="right">
           <p className="title">Issue Type</p>
-          <p>Motor not working</p>
+          <p>{issue}</p>
+        </div>
+      </div>
+      <div className="top">
+        <div className="left">
+          <p className="title">Date</p>
+          <p>{createdAt}</p>
+        </div>
+        <div className="right">
+          <p className="title">Statuse</p>
+          <p>{status}</p>
         </div>
       </div>
       <div className="desc">
         <p className="title">Issue Description</p>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem beatae similique
-          ipsam laborum esse nesciunt, dolores quas possimus natus qui sint repellendus omnis modi
-          minima sit! Quod facilis iste voluptate.
-        </p>
+        <p>{description}</p>
       </div>
     </div>
   );

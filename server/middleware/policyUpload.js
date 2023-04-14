@@ -3,7 +3,7 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const uploadPath = path.join(__dirname, "../", "public/");
+    const uploadPath = path.join("public/policy");
     cb(null, uploadPath);
   },
   filename: function (req, file, cb) {

@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { redirect, useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 import useUser from "../context/userProvider";
 
 function LoginLayout() {
   const { user, token } = useUser();
-  const navigation = useNavigation();
   const navigate = useNavigate();
   useEffect(() => {
     if (user !== {} && token !== "") {
@@ -18,11 +17,8 @@ function LoginLayout() {
     }
   });
 
-  console.log(navigation.state);
-
   return (
     <div className="login">
-      {navigation.state === "loading" ? <p>Redirecting...</p> : null}
       <h3>Welcome</h3>
       <LoginForm />
     </div>
@@ -64,8 +60,7 @@ export const loginAction = (login) =>
           errObj.message = data.message;
           return errObj;
         }
-        login(data.user, data.token);
-        return redirect("/dashboard");
+        return login(data.user, data.token);
       })
       .catch((error) => {
         console.log(error);

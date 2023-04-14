@@ -19,17 +19,15 @@ const userController = {
 
   loginUser: async function (req, res, next) {
     try {
-      console.log(req.body);
       const user = await User.findByCred(
         [req.body.username, req.body.password, req.body.role],
         (error) => {
           if (error) {
             res.status(error.code);
-            return next(new Error(error.message));
+            throw new Error(error.message);
           }
         }
       );
-      console.log("print: ", user);
       const token = await user.generateJWT();
       res.send({ token: `Bearer ${token}`, user: user.toJson() });
     } catch (error) {
@@ -56,6 +54,16 @@ const userController = {
       res.send(users);
     } catch (error) {
       console.log("get all user => ", error);
+      next(error);
+    }
+  },
+
+  getAllEmp: async function (req, res, next) {
+    try {
+      const users = await User.find({ role: "employee", admin: false });
+      res.send(users);
+    } catch (error) {
+      console.log("get emp error =>", error);
       next(error);
     }
   },
